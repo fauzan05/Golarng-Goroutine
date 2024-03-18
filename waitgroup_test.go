@@ -7,12 +7,12 @@ import (
 	// "time"
 )
 
-func RunAsyncronous(group *sync.WaitGroup, iteration int) {
+func RunAsyncronous(group *sync.WaitGroup, iteration *int) {
 	defer group.Done()
 
 	// group.Add(1)
 
-	fmt.Println("Hello ke : ", iteration)
+	fmt.Println("Hello ke : ", *iteration)
 	// time.Sleep(1 * time.Second)
 }
 
@@ -21,7 +21,7 @@ func TestWaitGroup(t *testing.T){
 
 	for i := 0; i < 100; i++ {
 		group.Add(1)
-		go RunAsyncronous(group, i)
+		go RunAsyncronous(group, &i)
 	}
 
 	group.Wait()
